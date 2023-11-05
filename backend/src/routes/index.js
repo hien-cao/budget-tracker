@@ -1,10 +1,6 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-router.get("", (req, res, next) => {
-    return res.status(200).json({
-        message: "ok"
-    })
-})
+router.use("/v1/api", require("./transaction.route"));
 
-module.exports = router
+module.exports = router;
