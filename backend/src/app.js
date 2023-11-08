@@ -2,6 +2,7 @@ const compression = require("compression");
 const express = require("express");
 const { default: helmet } = require("helmet");
 const morgan = require("morgan");
+const cors = require("cors");
 const app = express();
 
 // init middleware
@@ -14,6 +15,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
 
 // init db
 require("./db/init.mongodb");
