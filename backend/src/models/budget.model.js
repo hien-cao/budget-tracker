@@ -1,20 +1,15 @@
 const mongoose = require("mongoose"); // Erase if already required
 
-const DOCUMENT_NAME = "Expense";
-const COLLECTION_NAME = "Expense";
+const DOCUMENT_NAME = "Budget";
+const COLLECTION_NAME = "Budgets";
 
 // Declare the Schema of the Mongo model
-const expenseSchema = new mongoose.Schema(
+const budgetSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User",
-    },
-    budget: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Budget",
     },
     name: {
       type: String,
@@ -30,11 +25,11 @@ const expenseSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      default: "expense",
+      default: "budget",
     },
   },
   { timestamps: true, collection: COLLECTION_NAME }
 );
 
 //Export the model
-module.exports = mongoose.model(DOCUMENT_NAME, expenseSchema);
+module.exports = mongoose.model(DOCUMENT_NAME, budgetSchema);

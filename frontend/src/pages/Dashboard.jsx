@@ -1,18 +1,45 @@
 import { useStore } from "../store";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
+import BudgetForm from "../components/BudgetForm";
 
-export async function dashboardAction({ request }) {
-  const data = Object.fromEntries(await request.formData());
+export function dashboardLoader({ getUser }) {
+  return () => {
+    const isAuthenticated = getUser();
+    return isAuthenticated;
+  };
+}
+
+export function dashboardAction({ createBudget }) {
+  return async ({ request }) => {
+    try {
+      const data = Object.fromEntries(await request.formData());
+      await createBudget(data.newBudget, data.newBudgetAmount);
+      return toast.success(`Budget created.`);
+    } catch (error) {
+      return toast.error(error.response.data.message);
+    }
+  };
 }
 
 export default function Dashboard() {
-  const { isAuthenticated } = useStore((store) => store.user);
+  const isAuthenticated = useLoaderData();
   if (!isAuthenticated) {
     return <Navigate to='/login' />;
   }
   return (
     <>
-      <p>dashboard</p>
+      {isAuthenticated && (
+        <div className='dashboard'>
+          <div className='grid-sm'>
+            <div className='grid-lg'>
+              <div className='flex-lg'>
+                <BudgetForm />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

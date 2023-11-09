@@ -3,22 +3,20 @@ const expenseSchema = require("../models/expense.model");
 const { getInfoData } = require("../utils");
 
 class ExpenseService {
-  static addExpense = async ({ title, amount, category, description, date }) => {
-    if (!title || !amount || !category || !description || !date) {
+  static addExpense = async ({ name, amount, date }) => {
+    if (!name || !amount) {
       throw new BadRequestError("All fields are required");
     }
     if (amount <= 0) {
       throw new BadRequestError("Amount is invalid");
     }
     const expense = await expenseSchema.create({
-      title,
+      name,
       amount,
-      category,
-      description,
       date,
     });
     return getInfoData({
-      fields: ["title", "amount", "category", "description", "date"],
+      fields: ["_id", "name", "amount", "type"],
       object: expense,
     });
   };
@@ -27,7 +25,7 @@ class ExpenseService {
     const expenses = await expenseSchema.find().sort({ createdAt: -1 }).lean();
     return expenses.map((expense) =>
       getInfoData({
-        fields: ["title", "amount", "category", "description", "date"],
+        fields: ["_id", "name", "amount", "type"],
         object: expense,
       })
     );
@@ -36,7 +34,7 @@ class ExpenseService {
   static deleteExpense = async (id) => {
     const expense = await expenseSchema.findByIdAndDelete(id).lean();
     return getInfoData({
-      fields: ["title", "amount", "category", "description", "date"],
+      fields: ["_id", "name", "amount", "type"],
       object: expense,
     });
   };

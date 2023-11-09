@@ -326,3 +326,34 @@ input:focus {
   padding-block: var(--space-lg);
   text-align: center;
 }
+
+.dashboard {
+  display: grid;
+  gap: var(--space-lg);
+  place-items: start;
+  width: 100%;
+}
+
+.form-wrapper {
+  flex: 1 1 48%;
+  max-width: 800px;
+  position: relative;
+  display: grid;
+  gap: var(--space-sm);
+  background-color: var(--bkg);
+  padding: var(--space-xl);
+  border-radius: var(--round-lg);
+  box-shadow: 0.25em 0.3em 1em var(--muted);
+}
+
+.form-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0.55rem;
+  border-radius: calc(var(--round-lg) * 0.6);
+  z-index: -1;
+}
+
+.hidden {
+  display: none;
+}

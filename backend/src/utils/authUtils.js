@@ -93,4 +93,5 @@ module.exports = {
   storeKeyAndGetTokens,
   checkAuthentication,
   verifyJWT,
+  HEADER,
 };

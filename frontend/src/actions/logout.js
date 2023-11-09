@@ -3,12 +3,14 @@ import { toast } from "react-toastify";
 
 export default function logoutAction(logout, clearState, clearTokens) {
   return async () => {
-    const isLogouted = await logout();
-    if (isLogouted) {
+    try {
+      await logout();
       clearState();
       clearTokens();
       toast.success("Logout successfully");
       return redirect("/");
+    } catch (error) {
+      return toast.error("Failed to logout");
     }
   };
 }

@@ -15,7 +15,7 @@ export default function Nav() {
         <Form method='post' action='logout'>
           {`Welcome ${username}`}
           <button
-            className='btn btn--warning'
+            className='btn btn--dark'
             onClick={(event) => {
               if (!confirm("Do you want to logout?")) {
                 event.preventDefault();

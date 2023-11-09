@@ -1,5 +1,6 @@
 const AccessService = require("../services/access.service");
-const { Created } = require("../core/success.response");
+const { Created, Ok } = require("../core/success.response");
+const { HEADER } = require("../utils/authUtils");
 
 class AccessController {
   handleRefreshToken = async (req, res, next) => {
@@ -31,6 +32,14 @@ class AccessController {
     new Created({
       message: "Log out success",
       metadata: await AccessService.logOut(req.keyStore),
+    }).send(res);
+  };
+
+  getUser = async (req, res, next) => {
+    const userId = req.headers[HEADER.CLIENT_ID];
+    new Ok({
+      message: "User is authenticated",
+      metadata: await AccessService.getUser(userId),
     }).send(res);
   };
 }

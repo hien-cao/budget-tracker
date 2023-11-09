@@ -8,6 +8,7 @@ router
   .post("/signup", asyncHandler(accessController.signUp))
   .post("/login", asyncHandler(accessController.logIn))
   .use(checkAuthentication)
+  .get("/get-user", asyncHandler(accessController.getUser))
   .post("/logout", asyncHandler(accessController.logOut))
   .post(
     "/handleRefreshToken",

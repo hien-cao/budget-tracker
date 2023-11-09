@@ -15,6 +15,15 @@ const { getInfoData } = require("../utils");
 const UserService = require("./user.service");
 
 class AccessService {
+  static getUser = async (userId) => {
+    const user = await UserService.findByUserId(userId);
+    return {
+      data: getInfoData({
+        fields: ["username"],
+        object: user,
+      }),
+    };
+  };
   static logOut = async (keyStore) => {
     return await KeyTokenService.removeKeyById(keyStore._id);
   };
