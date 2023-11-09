@@ -42,13 +42,9 @@ const storeKeyAndGetTokens = async ({ username, _id: userId }) => {
 };
 
 const checkAuthentication = asyncHandler(async (req, res, next) => {
-  console.log("req.url::", req.url.indexOf("logout") > 0);
   const userId = req.headers[HEADER.CLIENT_ID];
   const accessToken = req.headers[HEADER.AUTHORIZATION];
   const refreshToken = req.headers[HEADER.REFRESHTOKEN];
-  if (!userId || !accessToken) {
-    throw new UnauthorizedError("Invalid request");
-  }
 
   // verify token
   const keyStore = await KeyTokenService.findByUserId(userId);

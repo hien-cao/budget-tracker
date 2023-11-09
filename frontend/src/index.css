@@ -62,9 +62,6 @@ body {
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
   background-color: var(--bkg);
   color: var(--text);
 }
@@ -143,6 +140,16 @@ nav a {
   color: var(--text);
 }
 
+nav form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xs);
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--text);
+}
+
 /* Footer */
 .footer {
   height: 100px;
@@ -213,6 +220,51 @@ nav a {
   opacity: 0.5;
 }
 
+.flex-lg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--space-lg);
+}
+
+.flex-md {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--space-md);
+}
+
+.flex-sm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--space-sm);
+}
+
+.grid-lg {
+  display: grid;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.grid-md {
+  display: grid;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.grid-sm {
+  display: grid;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.grid-xs {
+  display: grid;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
 /* forms */
 label {
   font-size: var(--fs-300);
@@ -258,4 +310,19 @@ input:focus {
   display: grid;
   gap: var(--space-sm);
   max-width: 25ch;
+}
+
+.login a {
+  font-size: var(--fs-200);
+  color: var(--accent);
+}
+
+.error {
+  place-self: center;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  gap: var(--space-lg);
+  padding-block: var(--space-lg);
+  text-align: center;
 }

@@ -1,8 +1,8 @@
 const { default: mongoose } = require("mongoose");
 
 const {
-    db: { dbURL },
-  } = require("../configs/config");
+  db: { dbURL },
+} = require("../configs/config");
 
 class Database {
   constructor() {
@@ -11,7 +11,7 @@ class Database {
 
   connect() {
     // dev
-    if (true) {
+    if (process.env.NODE_ENV == "dev") {
       mongoose.set("debug", true);
       mongoose.set("debug", { color: true });
     }
@@ -24,13 +24,13 @@ class Database {
 
   static getInstance() {
     if (!Database.instance) {
-        Database.instance = new Database()
+      Database.instance = new Database();
     }
 
-    return Database.instance
+    return Database.instance;
   }
 }
 
-const instanceMongodb = Database.getInstance()
+const instanceMongodb = Database.getInstance();
 
 module.exports = instanceMongodb;

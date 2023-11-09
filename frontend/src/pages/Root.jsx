@@ -1,18 +1,12 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { useStore } from "../store";
 import Nav from "../components/Nav";
 
-export function rootLoader() {
-  const user = {
-    userName: "Test user",
-  };
-  return user;
-}
-
 export default function Root() {
-  const user = useLoaderData();
+  const { username } = useStore((store) => store.user);
   return (
     <div className='main-layout'>
-      <Nav userName={user.userName} />
+      <Nav userName={username} />
       <main>
         <Outlet />
       </main>
