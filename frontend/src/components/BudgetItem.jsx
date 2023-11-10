@@ -14,11 +14,33 @@ const BudgetItem = ({ budget, expenses, showDelete = false }) => {
         <div>{`Spent: € ${spent}`}</div>
         <div>{`Remaining: € ${amount - spent}`}</div>
       </div>
-      <div className='flex-sm'>
-        <Link to={`/budget/${id}`} className='btn btn--dark'>
-          <span>View Details</span>
-        </Link>
-      </div>
+      {showDelete ? (
+        <div className='flex-sm'>
+          <Form
+            method='post'
+            action='delete'
+            onSubmit={(event) => {
+              if (
+                !confirm(
+                  "Are you sure you want to permanently delete this budget?"
+                )
+              ) {
+                event.preventDefault();
+              }
+            }}>
+            <button type='submit' className='btn'>
+              <span>Delete Budget</span>
+              <TrashIcon width={20} />
+            </button>
+          </Form>
+        </div>
+      ) : (
+        <div className='flex-sm'>
+          <Link to={`/budget/${id}`} className='btn btn--dark'>
+            <span>View Details</span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

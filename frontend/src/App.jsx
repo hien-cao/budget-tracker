@@ -8,7 +8,10 @@ import Login, { loginAction } from "./pages/Login";
 import Register, { registerAction } from "./pages/Register";
 import { useStore } from "./store";
 import logoutAction from "./actions/logout";
-import "react-datepicker/dist/react-datepicker.css";
+import ExpensesPage, {
+  expensesAction,
+  expensesLoader,
+} from "./pages/ExpensePage";
 
 function App() {
   const getUser = useStore((store) => store.getUser);
@@ -42,6 +45,13 @@ function App() {
             createExpense,
             deleteExpense,
           }),
+          errorElement: <ErrorBoundaryPage />,
+        },
+        {
+          path: "/expenses",
+          element: <ExpensesPage />,
+          loader: expensesLoader({ getExpenses, getBudgets }),
+          action: expensesAction({ deleteExpense }),
           errorElement: <ErrorBoundaryPage />,
         },
         {

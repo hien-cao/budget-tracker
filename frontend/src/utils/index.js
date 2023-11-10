@@ -10,7 +10,7 @@ export const calculateSpentByBudget = (budgetId, expenses) => {
 };
 
 export const getAllMatchingItems = ({ data, key, value }) => {
-  return data.filter((item) => item[key] === value);
+  return data?.filter((item) => item[key] === value);
 };
 
 export const formatDateToLocaleString = (epoch) =>

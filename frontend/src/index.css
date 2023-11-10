@@ -397,6 +397,7 @@ select:focus {
 
 .table {
   overflow-x: auto;
+  margin-bottom: 30px;
 }
 
 table {

@@ -1,5 +1,4 @@
-import { useStore } from "../store";
-import { Navigate, useLoaderData, redirect } from "react-router-dom";
+import { Navigate, useLoaderData, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import BudgetForm from "../components/BudgetForm";
 import ExpenseForm from "../components/ExpenseForm";
@@ -105,10 +104,10 @@ export default function Dashboard() {
                     <Table
                       expenses={expenses
                         .sort((a, b) => b.createdAt - a.createdAt)
-                        .slice(0, 8)}
+                        .slice(0, 4)}
                       budgets={budgets}
                     />
-                    {expenses.length > 8 && (
+                    {expenses.length > 4 && (
                       <Link to='expenses' className='btn btn--dark'>
                         View all expenses
                       </Link>
