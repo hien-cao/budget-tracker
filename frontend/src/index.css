@@ -29,6 +29,7 @@ svg {
 
   /* colors */
   --accent: #1dbbc3;
+  --lightBkg: #ededed;
   --bkg: #f7fcfd;
   --text: #111c1d;
   --muted: #839595;
@@ -204,18 +205,6 @@ nav form {
   outline: 0px solid var(--outline);
 }
 
-.btn--warning {
-  --backdrop: var(--warning) / 0.1;
-  border: 2px solid var(--warning);
-  --color: var(--warning);
-}
-
-.btn--warning:hover,
-:focus-visible {
-  --backdrop: var(--warning);
-  --color: var(--bkg);
-}
-
 .btn[disabled] {
   opacity: 0.5;
 }
@@ -368,4 +357,79 @@ select:focus {
   .expense-inputs {
     flex-wrap: wrap;
   }
+}
+
+.budgets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.budget {
+  --backdrop: var(--text);
+  display: -ms-grid;
+  display: grid;
+  flex: 1 1 32.2%;
+  max-width: 300px;
+  box-shadow: 0.25em 0.3em 1em hsl(var(--muted) / 0.2);
+  background-color: var(--bkg);
+  border-radius: var(--round-lg);
+  border: 3px solid var(--backdrop);
+  padding: calc(var(--space-md) / 1.5) calc(var(--space-md) / 1.2);
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--backdrop);
+}
+
+.budget > .flex-sm {
+  padding-top: var(--space-sm);
+  display: flex;
+  justify-content: center;
+}
+
+.budget-statictic {
+  font-size: var(--fs-200);
+}
+.budget-statictic :first-child {
+  font-size: var(--fs-300);
+  font-weight: bold;
+}
+
+.table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+tr:nth-child(odd) {
+  background-color: var(--lightBkg);
+}
+
+td {
+  border: none;
+  font-size: var(--fs-200);
+}
+
+thead > tr:nth-child(odd) {
+  background-color: var(--bkg);
+}
+
+td,
+th {
+  text-align: center;
+  padding: var(--space-xs);
+}
+
+table .btn {
+  margin-inline: auto;
+}
+
+table a {
+  text-decoration: none;
+  color: var(--bkg);
+  background-color: var(--accent);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--round-full);
 }

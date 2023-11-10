@@ -19,6 +19,7 @@ function App() {
   const logout = useStore((store) => store.logout);
   const createBudget = useStore((store) => store.createBudget);
   const createExpense = useStore((store) => store.createExpense);
+  const deleteExpense = useStore((store) => store.deleteExpense);
   const clearState = useStore((store) => store.clearState);
   const clearTokens = useStore((store) => store.clearTokens);
   const router = createBrowserRouter([
@@ -36,7 +37,11 @@ function App() {
             getExpenses,
             clearTokens,
           }),
-          action: dashboardAction({ createBudget, createExpense }),
+          action: dashboardAction({
+            createBudget,
+            createExpense,
+            deleteExpense,
+          }),
           errorElement: <ErrorBoundaryPage />,
         },
         {

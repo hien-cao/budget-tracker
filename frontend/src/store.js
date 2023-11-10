@@ -96,6 +96,9 @@ const store = (set, get) => ({
     }));
     return get().expenses;
   },
+  deleteExpense: async (expenseId) => {
+    await axiosInstance.delete(`/transaction/delete-expense/${expenseId}`);
+  },
 });
 
 export const useStore = create(store);

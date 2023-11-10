@@ -30,7 +30,7 @@ class ExpenseService {
       .lean();
     return expenses.map((expense) =>
       getInfoData({
-        fields: ["_id", "budget", "name", "amount", "type"],
+        fields: ["_id", "budget", "name", "amount", "type", "createdAt"],
         object: expense,
       })
     );
