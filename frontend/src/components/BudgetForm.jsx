@@ -10,14 +10,14 @@ const BudgetForm = () => {
 
   useEffect(() => {
     if (!isSubmitting) {
-      formRef.current.reset();
-      focusRef.current.focus();
+      formRef.current?.reset();
+      focusRef.current?.focus();
     }
   }, [isSubmitting]);
 
   return (
     <div className='form-wrapper'>
-      <h2 className='h3'>Create budget</h2>
+      <h2 className='h3'>Create Budget</h2>
       <fetcher.Form method='post' className='grid-sm' ref={formRef}>
         <div className='grid-xs'>
           <label htmlFor='newBudget'>Budget Name</label>
@@ -25,7 +25,7 @@ const BudgetForm = () => {
             type='text'
             name='newBudget'
             id='newBudget'
-            placeholder='House'
+            placeholder='e.g, Car repair'
             required
             ref={focusRef}
           />
@@ -37,19 +37,14 @@ const BudgetForm = () => {
             step='0.1'
             name='newBudgetAmount'
             id='newBudgetAmount'
-            placeholder='€200000'
+            placeholder='e.g, € 1000'
             required
             inputMode='decimal'
           />
         </div>
+        <input type='hidden' name='_action' value='createBudget' />
         <button type='submit' className='btn btn--dark' disabled={isSubmitting}>
-          {isSubmitting ? (
-            <span>Submitting…</span>
-          ) : (
-            <>
-              <span>Create budget</span>
-            </>
-          )}
+          {isSubmitting ? <span>Submitting…</span> : <span>Create Budget</span>}
         </button>
       </fetcher.Form>
     </div>

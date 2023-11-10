@@ -1,6 +1,7 @@
 const BudgetService = require("../services/budget.service");
 const { Created, Ok } = require("../core/success.response");
 const { HEADER } = require("../utils/authUtils");
+const { getInfoData } = require("../utils");
 
 class BudgetController {
   addBudget = async (req, res, next) => {
@@ -9,8 +10,10 @@ class BudgetController {
       message: "Budget added",
       metadata: await BudgetService.addBudget({
         userId,
-        name: req.body.name,
-        amount: req.body.amount,
+        ...getInfoData({
+          fields: ["name", "amount"],
+          object: req.body,
+        }),
       }),
     }).send(res);
   };

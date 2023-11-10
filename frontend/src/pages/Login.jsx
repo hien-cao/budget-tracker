@@ -28,8 +28,8 @@ export default function Login() {
 
   useEffect(() => {
     if (!isSubmitting) {
-      formRef.current.reset();
-      focusRef.current.focus();
+      formRef.current?.reset();
+      focusRef.current?.focus();
     }
   }, [isSubmitting]);
 
@@ -57,8 +57,14 @@ export default function Login() {
           aria-label='Your password'
         />
         <button type='submit' className='btn btn--dark' disabled={isSubmitting}>
-          {isSubmitting ? <span>Submitting…</span> : <span>Login</span>}
-          <ArrowLeftOnRectangleIcon width={20} />
+          {isSubmitting ? (
+            <span>Submitting…</span>
+          ) : (
+            <>
+              <span>Login</span>
+              <ArrowLeftOnRectangleIcon width={20} />
+            </>
+          )}
         </button>
         <Link to={"/signup"}>{"Not yet registered?"}</Link>
       </fetcher.Form>

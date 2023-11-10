@@ -26,8 +26,8 @@ export default function Register() {
 
   useEffect(() => {
     if (!isSubmitting) {
-      formRef.current.reset();
-      focusRef.current.focus();
+      formRef.current?.reset();
+      focusRef.current?.focus();
     }
   }, [isSubmitting]);
   if (isAuthenticated) {
@@ -57,9 +57,11 @@ export default function Register() {
           {isSubmitting ? (
             <span>Submitting…</span>
           ) : (
-            <span>Create account</span>
+            <>
+              <span>Create account</span>
+              <UserPlusIcon width={20} />
+            </>
           )}
-          <UserPlusIcon width={20} />
         </button>
         <Link to={"/login"}>{"Already have an account?"}</Link>
       </fetcher.Form>

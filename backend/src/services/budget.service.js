@@ -2,6 +2,7 @@ const { BadRequestError } = require("../core/error.response");
 const budgetSchema = require("../models/budget.model");
 const { getInfoData } = require("../utils");
 const { Types } = require("mongoose");
+const ExpenseService = require("../services/expense.service");
 
 class BudgetService {
   static addBudget = async ({ userId, name, amount }) => {
@@ -42,6 +43,8 @@ class BudgetService {
       _id: id,
       user: userId,
     });
+    // Delete all expenses created with this budget
+    ExpenseService.deleteExpenses(id);
     return getInfoData({
       fields: ["_id", "name", "amount", "type"],
       object: budget,

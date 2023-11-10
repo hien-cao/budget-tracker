@@ -76,6 +76,26 @@ const store = (set, get) => ({
       JSON.stringify({ name, amount })
     );
   },
+  getBudgets: async () => {
+    const budgets = await axiosInstance.get("/transaction/get-budgets");
+    set((store) => ({
+      budgets: budgets.data.metadata,
+    }));
+    return get().budgets;
+  },
+  createExpense: async (budgetId, name, amount) => {
+    await axiosInstance.post(
+      "/transaction/add-expense",
+      JSON.stringify({ budgetId, name, amount })
+    );
+  },
+  getExpenses: async () => {
+    const expenses = await axiosInstance.get("/transaction/get-expenses");
+    set((store) => ({
+      expenses: expenses.data.metadata,
+    }));
+    return get().expenses;
+  },
 });
 
 export const useStore = create(store);

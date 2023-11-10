@@ -12,10 +12,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   const getUser = useStore((store) => store.getUser);
+  const getBudgets = useStore((store) => store.getBudgets);
+  const getExpenses = useStore((store) => store.getExpenses);
   const signup = useStore((store) => store.signup);
   const login = useStore((store) => store.login);
   const logout = useStore((store) => store.logout);
   const createBudget = useStore((store) => store.createBudget);
+  const createExpense = useStore((store) => store.createExpense);
   const clearState = useStore((store) => store.clearState);
   const clearTokens = useStore((store) => store.clearTokens);
   const router = createBrowserRouter([
@@ -27,8 +30,13 @@ function App() {
         {
           index: true,
           element: <Dashboard />,
-          loader: dashboardLoader({ getUser }),
-          action: dashboardAction({ createBudget }),
+          loader: dashboardLoader({
+            getUser,
+            getBudgets,
+            getExpenses,
+            clearTokens,
+          }),
+          action: dashboardAction({ createBudget, createExpense }),
           errorElement: <ErrorBoundaryPage />,
         },
         {

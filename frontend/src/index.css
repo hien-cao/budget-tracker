@@ -284,7 +284,8 @@ select {
   transition: box-shadow 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-input:focus {
+input:focus,
+select:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--accent);
@@ -354,6 +355,17 @@ input:focus {
   z-index: -1;
 }
 
-.hidden {
+[hidden] {
   display: none;
+}
+
+.expense-inputs {
+  display: flex;
+  gap: var(--space-md);
+}
+
+@media screen and (max-width: 725px) {
+  .expense-inputs {
+    flex-wrap: wrap;
+  }
 }
