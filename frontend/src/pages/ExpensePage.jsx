@@ -17,7 +17,7 @@ export function expensesAction({ deleteExpense }) {
     if (_action === "deleteExpense") {
       try {
         await deleteExpense(values.expenseId);
-        return toast.success("Expense deleted!");
+        return toast.success("Expense deleted.");
       } catch (error) {
         return toast.error(error.response.data.message);
       }

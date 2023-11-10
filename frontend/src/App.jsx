@@ -12,6 +12,8 @@ import ExpensesPage, {
   expensesAction,
   expensesLoader,
 } from "./pages/ExpensePage";
+import BudgetPage, { budgetLoader, budgetAction } from "./pages/BudgetPage";
+import { deleteBudgetAction } from "./actions/deleteBudgetAction";
 
 function App() {
   const getUser = useStore((store) => store.getUser);
@@ -21,6 +23,7 @@ function App() {
   const login = useStore((store) => store.login);
   const logout = useStore((store) => store.logout);
   const createBudget = useStore((store) => store.createBudget);
+  const deleteBudget = useStore((store) => store.deleteBudget);
   const createExpense = useStore((store) => store.createExpense);
   const deleteExpense = useStore((store) => store.deleteExpense);
   const clearState = useStore((store) => store.clearState);
@@ -46,6 +49,19 @@ function App() {
             deleteExpense,
           }),
           errorElement: <ErrorBoundaryPage />,
+        },
+        {
+          path: "budget/:id",
+          element: <BudgetPage />,
+          loader: budgetLoader({ getBudgets, getExpenses }),
+          action: budgetAction({ createExpense, deleteExpense }),
+          errorElement: <ErrorBoundaryPage />,
+          children: [
+            {
+              path: "delete",
+              action: deleteBudgetAction({ deleteBudget }),
+            },
+          ],
         },
         {
           path: "/expenses",

@@ -44,7 +44,7 @@ class BudgetService {
       user: userId,
     });
     // Delete all expenses created with this budget
-    ExpenseService.deleteExpenses(id);
+    await ExpenseService.deleteExpenses(id);
     return getInfoData({
       fields: ["_id", "name", "amount", "type"],
       object: budget,

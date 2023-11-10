@@ -28,7 +28,7 @@ const BudgetItem = ({ budget, expenses, showDelete = false }) => {
                 event.preventDefault();
               }
             }}>
-            <button type='submit' className='btn'>
+            <button type='submit' className='btn btn--dark'>
               <span>Delete Budget</span>
               <TrashIcon width={20} />
             </button>
