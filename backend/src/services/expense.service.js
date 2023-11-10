@@ -52,12 +52,7 @@ class ExpenseService {
     const expenses = await expenseSchema.deleteMany({
       budget: new Types.ObjectId(budgetId),
     });
-    return expenses.map((expense) =>
-      getInfoData({
-        fields: ["_id", "budget", "name", "amount", "type"],
-        object: expense,
-      })
-    );
+    return expenses;
   };
 }
 
